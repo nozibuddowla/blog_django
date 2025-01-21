@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Home</h1>
+    <p>Welcome to the home page.</p>
+    <div class="row">
+        {% for post in data %}
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ post.title }} </h5>
+                    <p class="card-text"> {{ post.content }} </p>
+                    <p class="card-text"> {{ post.author.name }} </p>
+                    <p class="card-text"> 
+                        {% for category in post.category.all %}
+                            #{{ category.name }} {% if not forloop.last %}, {% endif %}
+                        {% endfor %}    
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
